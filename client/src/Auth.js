@@ -58,7 +58,7 @@ class Auth {
         this.expiresAt = null;
         this.auth0.logout({
             returnTo: 'http://localhost:3000',
-            clientID: '<YOUR_AUTH0_CLIENT_ID>',
+            clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
         });
     }
 }
