@@ -2,7 +2,10 @@ import React from "react";
 
 function Navbar() {
     return (
-        <h1>Navbar</h1>
+        <div>
+            <h1>Navbar</h1>
+            <a href="/signin">Sign-In</a>
+        </div>
     )
 };
 
