@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-// import './App.css';
-import auth0Client from './Auth';
+import logo from '../logo.svg';
+import auth0Client from '../Auth';
 
 class SignIn extends Component {
     componentDidMount() {
