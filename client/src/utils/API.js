@@ -1,11 +1,8 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api");
+import axios from "axios";
 
-router.use("/api", apiRoutes);
+export default {
 
-router.use(function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/public/index.html"));
-})
-
-module.exports = router;
+    findAll: function () {
+        return axios.get("/api");
+    }
+};
