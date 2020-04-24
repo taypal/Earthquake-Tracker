@@ -3,7 +3,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Callback from './Callback';
 import Home from '../src/pages/Home';
-import SignIn from '../src/pages/Signin'
+import SignIn from '../src/pages/Signin';
+import User from '../src/pages/User';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route exact path='/' component={Home} exact />
       <Route exact path='/callback' component={Callback} exact />
       <Route exact path='/signin' component={SignIn} exact />
+      <Route exact path='/dashboard' component={User} exact />
     </div>
   )
 }
