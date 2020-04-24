@@ -1,8 +1,9 @@
 import React from "react";
+import EarthquakeCard from "../EarthquakeCard";
 
 function EarthquakeList() {
     return (
-        <h1>EarthquakeList</h1>
+        <EarthquakeCard />
     )
 }
 

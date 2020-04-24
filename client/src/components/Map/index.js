@@ -2,7 +2,7 @@ import React from "react";
 
 function Map() {
     return (
-        <h1>Map</h1>
+        <img id="map" src="/assets/images/testmap.png" />
     )
 }
 
