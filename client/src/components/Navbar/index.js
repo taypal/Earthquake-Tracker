@@ -9,7 +9,7 @@ function Navbar() {
                 <div className="row">
                     <div className="d-flex col-12 col-md-4 justify-content-center justify-content-md-start">
                         <Link className="navbar-brand" to="./">
-                            <img id="navLogo" className="pt-2" src="/assets/images/epicenterLogo.png" alt="logo" />
+                            <img id="navLogo" className="pt-2" src="/assets/images/epicenterLogo2.png" alt="logo" />
                         </Link>
                     </div>
                     <div className="d-flex col-12 col-md-8 justify-content-center justify-content-md-end">
