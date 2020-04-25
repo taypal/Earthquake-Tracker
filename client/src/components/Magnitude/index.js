@@ -1,11 +1,16 @@
 import React from "react";
+import "./style.css";
 
 function Magnitude() {
     return (
-        <div>
-            <h1>5.6</h1><br />
-            <h3>Magnitude</h3>
-        </div>
+        <table className="table m-0 p-0">
+            <tr>
+                <th className="text-center">Magnitude</th>
+            </tr>
+            <tr>
+                <td id="mag" className="text-center">5.6</td>
+            </tr>
+        </table>
     )
 }
 
