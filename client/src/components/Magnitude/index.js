@@ -2,7 +2,10 @@ import React from "react";
 
 function Magnitude() {
     return (
-        <h1>Magnitude</h1>
+        <div>
+            <h1>5.6</h1><br />
+            <h3>Magnitude</h3>
+        </div>
     )
 }
 
