@@ -1,9 +1,11 @@
 import React from "react";
-import EarthquakeCard from "../EarthquakeCard";
+import "./style.css";
 
-function EarthquakeList() {
+function EarthquakeList(props) {
     return (
-        <EarthquakeCard />
+        <div id="quakeList" className="container-fluid my-5 p-5">
+            {props.children}
+        </div>
     )
 }
 
