@@ -7,6 +7,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "auth0-js": "^9.13.2",
+    "express-jwt": "^5.3.3",
+    "jwks-rsa": "^1.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
