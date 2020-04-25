@@ -2,7 +2,9 @@ import React from "react";
 
 function Map() {
     return (
-        <img id="map" className="m-0 p-0" src="/assets/images/testmap.png" />
+        <div id="googleMap" className="col-3 p-0">
+            <img id="map" className="m-0 p-0" src="/assets/images/testmap.png" />
+        </div>
     )
 }
 
