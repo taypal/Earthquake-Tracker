@@ -10,20 +10,27 @@ import API from "../utils/API";
 
 function Home() {
 
-    const [earthquakeState, setEarthquakeState] = useState({});
+    var quakeList = [];
+    const [earthquakeState, setEarthquakeState] = useState([]);
 
     // Load all load earthquake data and set state
     useEffect(() => {
-        API.getMagna()
-            .then(res =>
-                setEarthquakeState({
-                    magnitude: res.data.features[0].properties.mag,
-                    date: res.data.features[0].properties.time,
-                    location: res.data.features[0].properties.place,
-                    depth: res.data.features[0].geometry.coordinates[2] + " km",
-                    time: res.data.features[0].properties.time
-                })
-            )
+        API.getEarthquakes()
+            .then(res => {
+                for (var i = 0; i < 5; i++) {
+                    quakeList.push({
+                        magnitude: res.data.features[i].properties.mag,
+                        date: res.data.features[i].properties.time,
+                        location: res.data.features[i].properties.place,
+                        depth: res.data.features[i].geometry.coordinates[2] + " km",
+                        time: res.data.features[i].properties.time
+                    })
+                }
+                return quakeList
+            })
+            .then(quakeList => {
+                setEarthquakeState(quakeList)
+            })
     }, [])
 
 
@@ -32,18 +39,22 @@ function Home() {
         <div>
             <Navbar />
             <EarthquakeList>
-                <EarthquakeCard>
-                    <Magnitude
-                        magnitude={earthquakeState.magnitude}
-                    />
-                    <Table
-                        date={earthquakeState.date}
-                        time={earthquakeState.time}
-                        location={earthquakeState.location}
-                        depth={earthquakeState.depth}
-                    />
-                    <Map />
-                </EarthquakeCard>
+                {earthquakeState.map(quake => {
+                    return (
+                        <EarthquakeCard>
+                            <Magnitude
+                                magnitude={quake.magnitude}
+                            />
+                            <Table
+                                date={quake.date}
+                                time={quake.time}
+                                location={quake.location}
+                                depth={quake.depth}
+                            />
+                            <Map />
+                        </EarthquakeCard>
+                    );
+                })}
             </EarthquakeList>
         </div>
     )
