@@ -3,7 +3,7 @@ import "./style.css";
 
 function EarthquakeList(props) {
     return (
-        <div id="quakeList" className="container-fluid my-5 p-5">
+        <div id="earthquakeList" className="container-fluid my-5 p-5">
             {props.children}
         </div>
     )
