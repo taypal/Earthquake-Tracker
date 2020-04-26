@@ -7,10 +7,13 @@ import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import Map from "../components/Map";
 
+
 function User() {
+
     return (
         <div>
             <Navbar />
+
             <SearchForm />
             <EarthquakeList>
                 <EarthquakeCard>
