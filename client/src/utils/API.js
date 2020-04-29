@@ -1,18 +1,6 @@
 import axios from "axios";
 
 
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("../../../routes/api");
-
-router.use("/api", apiRoutes);
-router.use(function (req, res) {
-    res.sendFile(path.join(__dirname, "../../public/index.html"));
-
-});
-
-module.exports = router;
-
 export default {
 
     findAll: function () {
@@ -26,3 +14,4 @@ export default {
         return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=" + mag + "&longitude=" + long + "&latitude=" + lat + "&maxradiuskm=" + prox);
     }
 };
+
