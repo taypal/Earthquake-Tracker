@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
 
     findAll: function () {
-        return axios.get("/api");
+        return axios.get("/api/users");
     },
     // test API call for development
     getEarthquakes: function () {

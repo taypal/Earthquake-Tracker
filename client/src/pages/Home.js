@@ -6,6 +6,7 @@ import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import Map from "../components/Map";
 import API from "../utils/API";
+import auth0Client from '../Auth';
 
 
 function Home() {
@@ -33,7 +34,23 @@ function Home() {
             })
     })
 
-
+    useEffect(() => {
+        // Run! Like go get some data from an API.
+        async function fetchUser() {
+            if (auth0Client.getProfile()) {
+                console.log(auth0Client.getProfile().name)
+                var test = await API.findAll()
+                var test2 = await API.findAll()
+                console.log(test)
+                console.log(test2)
+            }
+            var test = await API.findAll()
+            var test2 = await API.findAll()
+            console.log(test)
+            console.log(test2)
+        }
+        fetchUser()
+    }, []);
 
     return (
         <div>
