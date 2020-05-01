@@ -2,16 +2,15 @@ const db = require("../models");
 
 module.exports = {
     findAll: function (req, res) {
-        // db.user
-        //     .find(req.query)
-        //     .then(dbModel => res.json(dbModel))
-        //     .catch(err => res.status(422).json(err));
-        res.send("Hello World")
-        console.log("It works")
+        db.user
+            .find(req.query)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+
     },
     findByEmail: function (req, res) {
         db.user
-            .findById(req.params.id)
+            .findOne(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -22,9 +21,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        db.Book
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+        db.user
+            .findOneAndUpdate(req.body, req.body, {
+                new: true,
+                upsert: true
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    check: function (req, res) {
+
     },
 };
