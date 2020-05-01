@@ -7,9 +7,33 @@ import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import Map from "../components/Map";
 import API from "../utils/API";
+import auth0Client from '../Auth';
+
 
 
 function User() {
+
+    useEffect(() => {
+        // Run! Like go get some data from an API.
+        async function fetchUser() {
+            if (auth0Client.getProfile()) {
+                var profile = auth0Client.getProfile().name.toString()
+                console.log(profile)
+                var user = await API.createUser({
+                    email: profile,
+                })
+                var test = await API.findAll()
+                console.log(test)
+                console.log(user)
+
+            }
+            var test = await API.findAll()
+            console.log(test)
+
+        }
+        fetchUser()
+    }, []);
+
 
     var query = {
         // Insert search parameters from database
