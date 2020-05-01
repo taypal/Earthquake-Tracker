@@ -7,6 +7,7 @@ import Table from "../components/Table";
 import Map from "../components/Map";
 import API from "../utils/API";
 
+// import GMap from '../components/googleMap';
 
 function Home() {
 
@@ -53,6 +54,7 @@ function Home() {
                         </EarthquakeCard>
                     );
                 })}
+
             </EarthquakeList>
         </div>
     )
