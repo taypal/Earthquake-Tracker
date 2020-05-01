@@ -22,14 +22,9 @@ function User() {
                 var user = await API.createUser({
                     email: profile,
                 })
-                var test = await API.findAll()
-                console.log(test)
                 console.log(user)
 
             }
-            var test = await API.findAll()
-            console.log(test)
-
         }
         fetchUser()
     }, []);
