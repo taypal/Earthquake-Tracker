@@ -1,3 +1,4 @@
 module.exports = {
-    earthquake: require("./earthquake")
+    // earthquake: require("./earthquake"),
+    user: require("./user")
 };

@@ -7,6 +7,7 @@ import User from '../src/pages/User';
 import SecuredRoute from './SecuredRoute';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);

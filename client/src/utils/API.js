@@ -1,9 +1,13 @@
 import axios from "axios";
 
+
 export default {
 
     findAll: function () {
-        return axios.get("/api");
+        return axios.get("/api/users");
+    },
+    createUser: function (profile) {
+        return axios.post("/api/users", profile)
     },
     // test API call for development
     getEarthquakes: function () {
@@ -13,3 +17,4 @@ export default {
         return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=" + mag + "&longitude=" + long + "&latitude=" + lat + "&maxradiuskm=" + prox);
     }
 };
+

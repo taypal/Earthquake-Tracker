@@ -6,18 +6,38 @@ import EarthquakeCard from "../components/EarthquakeCard";
 import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import API from "../utils/API";
+import auth0Client from '../Auth';
+
 
 function User() {
+
 
 
     var quakeList = [];
     const [earthquakeState, setEarthquakeState] = useState([]);
     const [queryState, setQueryState] = useState({
-        magnitude: 2.5,
+      magnitude: 2.5,
         latitude: 41,
         longitude: -112,
         proximity: 100
     })
+
+    useEffect(() => {
+        // Run! Like go get some data from an API.
+        async function fetchUser() {
+            if (auth0Client.getProfile()) {
+                var profile = auth0Client.getProfile().name.toString()
+                console.log(profile)
+                var user = await API.createUser({
+                    email: profile,
+                })
+                console.log(user)
+
+            }
+        }
+        fetchUser()
+    }, []);
+
 
     // Load all load earthquake data and set state
     useEffect(() => {
