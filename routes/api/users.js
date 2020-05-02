@@ -4,12 +4,13 @@ const usersController = require("../../controllers/userController");
 // Matches with "/api/users"
 router.route("/")
   .get(usersController.findAll)
-  .post(usersController.update);
+  .post(usersController.update)
+
 
 
 // Matches with "/api/users/:id"
 router
-  .route("/:id")
+  .route("/:email")
   .get(usersController.findByEmail)
 
 module.exports = router;

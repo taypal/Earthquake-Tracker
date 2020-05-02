@@ -31,7 +31,7 @@ function Home() {
             .then(quakeList => {
                 setEarthquakeState(quakeList)
             })
-    })
+    }, [])
 
     return (
         <div>
