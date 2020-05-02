@@ -1,45 +1,53 @@
-import React, { Component, createRef } from 'react'
+import React, { Component } from 'react';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-class GoogleMap extends Component {
+const mapStyles = {
+    width: '900px',
+    height: '500px',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: '0',
+    left: '50px'
+}
+
+export class MapContainer extends Component {
+
     googleMapRef = React.createRef()
 
     componentDidMount() {
-        const googleScript = document.createElement('script')
-        // var AIzaSyA5CU0AiAHCtMw_EuwMGiDIBOBoZCKyXJU;
-        googleScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&libraries=visualization&callback=initMap`
-        window.document.body.appendChild(googleScript)
 
-        googleScript.addEventListener('load', {
-            googleMap: this.createGoogleMap(),
-            marker: this.createMarker()
-        })
+        const usgsScript = document.createElement('script')
+
+        usgsScript.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(usgsScript);
     }
 
-    createGoogleMap = () =>
-        new window.google.maps.Map(this.googleMapRef.current, {
-            zoom: 16,
-            center: {
-                lat: 43.642567,
-                lng: -79.387054,
-            },
-            disableDefaultUI: true,
-        })
-
-    createMarker = () =>
-        new window.google.maps.Marker({
-            position: { lat: 43.642567, lng: -79.387054 },
-            map: this.googleMap,
+    createLayer = () =>
+        new window.google.map.visualization.HeatmapLayer({
+            data: "heatmapData",
+            dissipating: false,
+            map: "map"
         })
 
     render() {
         return (
-            <div
-                id="google-map"
-                ref={this.googleMapRef}
-                style={{ width: '400px', height: '300px' }}
-            />
-        )
+            <div>
+                <Map
+
+                    google={this.props.google}
+                    zoom={2}
+                    style={mapStyles}
+                    initialCenter={{
+                        lat: 40.5692,
+                        lng: -111.8947
+                    }}
+                />
+            </div>
+        );
     }
 }
 
-export default GoogleMap;
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyA5CU0AiAHCtMw_EuwMGiDIBOBoZCKyXJU'
+})(MapContainer);

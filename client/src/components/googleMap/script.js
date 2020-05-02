@@ -31,3 +31,4 @@ function eqfeed_callback(results) {
         map: map
     });
 }
+
