@@ -8,7 +8,7 @@ import Map from "../components/Map";
 import API from "../utils/API";
 import auth0Client from '../Auth';
 
-// import GMap from '../components/googleMap';
+import GMap from '../components/googleMap';
 
 function Home() {
 
@@ -73,7 +73,7 @@ function Home() {
                         </EarthquakeCard>
                     );
                 })}
-
+                <GMap />
             </EarthquakeList>
         </div>
     )
