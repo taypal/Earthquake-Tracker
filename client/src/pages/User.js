@@ -62,7 +62,7 @@ function User() {
             })
     }, [queryState])
 
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = (data, event) => {
         event.preventDefault();
@@ -77,33 +77,40 @@ function User() {
             <form id="searchForm" className="form-inline mx-auto mt-5" onSubmit={handleSubmit(onSubmit)}>
                 <input
                     type="number"
+                    min="-90"
+                    max="90"
                     required="required"
                     name="latitude"
                     className="form-control mx-2"
                     id="latitudeInput"
-                    placeholder="latitude"
+                    placeholder="lat"
                     ref={register}
                 />
                 <input
                     type="number"
+                    min="-180"
+                    max="180"
                     name="longitude"
                     required="required"
                     className="form-control mx-2"
                     id="longitudeInput"
-                    placeholder="longitude"
+                    placeholder="long"
                     ref={register}
                 />
                 <input
                     type="number"
+                    min="1"
+                    max="9"
                     required="required"
                     name="magnitude"
                     className="form-control mx-2"
                     id="lmagnitudeInput"
-                    placeholder="magnitude"
+                    placeholder="mag"
                     ref={register}
                 />
                 <input
                     type="number"
+                    min="0"
                     required="required"
                     name="proximity"
                     className="form-control mx-2"
