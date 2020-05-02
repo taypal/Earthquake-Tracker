@@ -22,7 +22,7 @@ module.exports = {
     },
     update: function (req, res) {
         db.user
-            .findOneAndUpdate(req.body, req.body, {
+            .findOneAndUpdate(req.body.email, req.body, {
                 new: true,
                 upsert: true
             })
