@@ -76,63 +76,65 @@ function User() {
             <Navbar />
             <form id="searchForm" className="form-inline mx-auto mt-5" onSubmit={handleSubmit(onSubmit)}>
                 <input
-                    type="text"
+                    type="number"
+                    required="required"
                     name="latitude"
                     className="form-control mx-2"
                     id="latitudeInput"
                     placeholder="latitude"
-                    ref={register({ required: true })}
+                    ref={register}
                 />
                 <input
-                    type="text"
+                    type="number"
                     name="longitude"
+                    required="required"
                     className="form-control mx-2"
                     id="longitudeInput"
                     placeholder="longitude"
-                    ref={register({ required: true })}
+                    ref={register}
                 />
                 <input
-                    type="text"
+                    type="number"
+                    required="required"
                     name="magnitude"
                     className="form-control mx-2"
                     id="lmagnitudeInput"
                     placeholder="magnitude"
-                    ref={register({ required: true })}
+                    ref={register}
                 />
                 <input
-                    type="text"
+                    type="number"
+                    required="required"
                     name="proximity"
                     className="form-control mx-2"
                     id="proximityInput"
                     placeholder="proximity (km)"
-                    ref={register({ required: true })}
+                    ref={register}
                 />
                 <button
                     type="submit" className="btn btn-secondary mx-2"
                 >Update Search</button>
             </form>
-            {errors.latitude && <p>Latitude required</p>}
-            {errors.longitude && <p>Longitude required</p>}
-            {errors.magnitude && <p>Magnitude required</p>}
-            {errors.proximity && <p>Proximity required</p>}
 
             <EarthquakeList>
-                {earthquakeState.map(quake => {
-                    return (
-                        <EarthquakeCard>
-                            <Magnitude
-                                magnitude={quake.magnitude}
-                            />
-                            <Table
-                                date={quake.date}
-                                time={quake.time}
-                                location={quake.location}
-                                depth={quake.depth}
-                            />
-                            <Usgs url={quake.url} />
-                        </EarthquakeCard>
-                    );
-                })}
+                {earthquakeState[0] ? (
+                    earthquakeState.map(quake => {
+                        return (
+                            <EarthquakeCard>
+                                <Magnitude
+                                    magnitude={quake.magnitude}
+                                />
+                                <Table
+                                    date={quake.date}
+                                    time={quake.time}
+                                    location={quake.location}
+                                    depth={quake.depth}
+                                />
+                                <Usgs url={quake.url} />
+                            </EarthquakeCard>
+                        );
+                    })) : (<h3 className="text-center text-black mt-3">No records found</h3>)
+                }
             </EarthquakeList>
         </div>
     )
