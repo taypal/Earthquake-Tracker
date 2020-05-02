@@ -11,6 +11,7 @@ import auth0Client from '../Auth';
 
 var profile = ""
 
+
 function User() {
 
 
@@ -21,8 +22,20 @@ function User() {
         magnitude: 2.5,
         latitude: 41,
         longitude: -112,
-        proximity: 100
+        proximity: 100,
+        initial: true
     })
+
+    async function fetchUserDefault() {
+        var testUser = await API.findUser(profile);
+        console.log(testUser.data);
+        var userData = testUser.data || {};
+        userData.initial = false;
+        setQueryState(userData)
+
+    }
+
+
 
     useEffect(() => {
         // Run! Like go get some data from an API.
@@ -39,29 +52,34 @@ function User() {
         fetchUser()
     }, []);
 
+    useEffect(() => {
+        fetchUserDefault()
+    }, [])
 
     // Load all load earthquake data and set state
     useEffect(() => {
+        if (!queryState.initial) {
+            API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
+                .then(res => {
+                    for (var i = 0; i < res.data.features.length; i++) {
+                        quakeList.push({
+                            magnitude: res.data.features[i].properties.mag,
+                            date: res.data.features[i].properties.time,
+                            location: res.data.features[i].properties.place,
+                            depth: res.data.features[i].geometry.coordinates[2] + " km",
+                            time: res.data.features[i].properties.time,
+                            url: res.data.features[i].properties.url
+                        })
+                    }
+                    return quakeList
+                })
+                .then(quakeList => {
+                    setEarthquakeState(quakeList)
+                    quakeList = [];
+                })
+        }
 
-        console.log(queryState);
-        API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
-            .then(res => {
-                for (var i = 0; i < res.data.features.length; i++) {
-                    quakeList.push({
-                        magnitude: res.data.features[i].properties.mag,
-                        date: res.data.features[i].properties.time,
-                        location: res.data.features[i].properties.place,
-                        depth: res.data.features[i].geometry.coordinates[2] + " km",
-                        time: res.data.features[i].properties.time,
-                        url: res.data.features[i].properties.url
-                    })
-                }
-                return quakeList
-            })
-            .then(quakeList => {
-                setEarthquakeState(quakeList)
-                quakeList = [];
-            })
+
     }, [queryState])
 
     const { register, handleSubmit } = useForm();

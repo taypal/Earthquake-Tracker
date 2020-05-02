@@ -10,7 +10,7 @@ module.exports = {
     },
     findByEmail: function (req, res) {
         db.user
-            .findOne(req.body)
+            .findOne(req.params)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -21,8 +21,9 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
+
         db.user
-            .findOneAndUpdate(req.body.email, req.body, {
+            .findOneAndUpdate({ email: req.body.email }, req.body, {
                 new: true,
                 upsert: true
             })

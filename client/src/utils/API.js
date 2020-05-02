@@ -6,6 +6,9 @@ export default {
     findAll: function () {
         return axios.get("/api/users");
     },
+    findUser: function (profile) {
+        return axios.get("/api/users/" + profile);
+    },
     createUser: function (profile) {
         return axios.post("/api/users", profile)
     },
