@@ -4,7 +4,6 @@ import EarthquakeList from "../components/EarthquakeList";
 import EarthquakeCard from "../components/EarthquakeCard";
 import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
-import Map from "../components/Map";
 import API from "../utils/API";
 
 // import GMap from '../components/googleMap';
@@ -50,7 +49,6 @@ function Home() {
                                 location={quake.location}
                                 depth={quake.depth}
                             />
-                            <Map />
                         </EarthquakeCard>
                     );
                 })}
