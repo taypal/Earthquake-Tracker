@@ -6,7 +6,7 @@ import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import API from "../utils/API";
 
-import GMap from '../components/googleMap';
+import GoogleMap from '../components/googleMap';
 
 function Home() {
 
@@ -37,6 +37,7 @@ function Home() {
         <div>
             <Navbar />
             <EarthquakeList>
+                <GoogleMap />
                 {earthquakeState.map(quake => {
                     return (
                         <EarthquakeCard>
@@ -52,7 +53,7 @@ function Home() {
                         </EarthquakeCard>
                     );
                 })}
-                <GMap />
+
             </EarthquakeList>
         </div>
     )
