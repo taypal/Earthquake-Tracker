@@ -6,6 +6,7 @@ router.route("/")
   .get(usersController.findAll)
   .post(usersController.update);
 
+
 // Matches with "/api/users/:id"
 router
   .route("/:id")

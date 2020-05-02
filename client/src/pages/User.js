@@ -9,6 +9,7 @@ import Usgs from "../components/Usgs";
 import API from "../utils/API";
 import auth0Client from '../Auth';
 
+var profile = ""
 
 function User() {
 
@@ -27,7 +28,7 @@ function User() {
         // Run! Like go get some data from an API.
         async function fetchUser() {
             if (auth0Client.getProfile()) {
-                var profile = auth0Client.getProfile().name.toString()
+                profile = auth0Client.getProfile().name.toString()
                 console.log(profile)
                 var user = await API.createUser({
                     email: profile,
@@ -41,6 +42,7 @@ function User() {
 
     // Load all load earthquake data and set state
     useEffect(() => {
+
         console.log(queryState);
         API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
             .then(res => {
@@ -64,10 +66,13 @@ function User() {
 
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data, event) => {
+    async function onSubmit(data, event) {
         event.preventDefault();
         console.log("form submitted")
         setQueryState(data);
+        console.log(profile);
+        var userQuery = await API.addEarthquakes(profile, data)
+        console.log(userQuery);
     }
 
 
