@@ -8,6 +8,8 @@ import Table from "../components/Table";
 import Usgs from "../components/Usgs";
 import API from "../utils/API";
 import auth0Client from '../Auth';
+var moment = require("moment");
+
 
 var profile = ""
 
@@ -62,9 +64,11 @@ function User() {
             API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
                 .then(res => {
                     for (var i = 0; i < res.data.features.length; i++) {
+                        var momentTime = moment(res.data.features[i].properties.time).format('MMMM Do YYYY, h:mm a')
                         quakeList.push({
                             magnitude: res.data.features[i].properties.mag,
-                            date: res.data.features[i].properties.time,
+                            // date: res.data.features[i].properties.time,
+                            date: momentTime,
                             location: res.data.features[i].properties.place,
                             depth: res.data.features[i].geometry.coordinates[2] + " km",
                             time: res.data.features[i].properties.time,
