@@ -5,9 +5,9 @@ function SearchForm(props) {
 
     return (
 
-        <form id="searchForm" className="form-inline mx-auto mt-5">
+        <div id="searchForm" className="d-flex justify-content-center justify-content-sm-between">
             {props.children}
-        </form>
+        </div>
     )
 }
 

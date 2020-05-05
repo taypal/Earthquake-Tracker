@@ -1,3 +1,7 @@
 #navLogo {
-    height: 50px;
+    height: 75px;
+}
+
+#nav {
+    min-height: 100px;
 }

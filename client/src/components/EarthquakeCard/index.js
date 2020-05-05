@@ -3,7 +3,7 @@ import "./style.css";
 
 function EarthquakeCard(props) {
     return (
-        <div id="earthquakeCard" className="container mx-auto my-5">
+        <div id="earthquakeCard" className="border border-warning rounded container p-2 m-2">
             <div className="row">
                 {props.children}
             </div>

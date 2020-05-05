@@ -8,8 +8,6 @@ function SearchMagnitude(props) {
             className="form-control mx-2"
             id="magnitudeInput"
             placeholder="magnitude"
-
-
         />
     )
 }
