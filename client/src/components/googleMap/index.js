@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const mapStyles = {
-    width: '900px',
-    height: '500px',
+    width: '100%',
+    height: '300px',
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "top",
     margin: '0',
-    left: '50px'
+    left: '0'
 }
 
 export class MapContainer extends Component {

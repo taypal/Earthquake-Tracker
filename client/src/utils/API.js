@@ -20,7 +20,7 @@ export default {
         return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=6.0");
     },
     getUserEarthquakes: function (mag, lat, long, prox) {
-        return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmagnitude=" + mag + "&longitude=" + long + "&latitude=" + lat + "&maxradiuskm=" + prox);
+        return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=12&minmagnitude=" + mag + "&longitude=" + long + "&latitude=" + lat + "&maxradiuskm=" + prox);
     }
 };
 
