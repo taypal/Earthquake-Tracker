@@ -19,6 +19,7 @@ function initMap() {
 }
 
 function eqfeed_callback(results) {
+    // debugger
     var heatmapData = [];
     for (var i = 0; i < results.features.length; i++) {
         var coords = results.features[i].geometry.coordinates;
@@ -32,3 +33,4 @@ function eqfeed_callback(results) {
     });
 }
 
+window.eqfeed_callback = eqfeed_callback;
