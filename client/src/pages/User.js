@@ -146,6 +146,7 @@ function User() {
                         className="form-control border-warning border-top-0 border-left-0 border-right-0 rounded-0 bg-transparent text-light text-center"
                         type="number"
                         min="0"
+                        max="20000"
                         required="required"
                         name="proximity"
                         id="proximityInput"

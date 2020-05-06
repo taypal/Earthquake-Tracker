@@ -17,7 +17,7 @@ function Home() {
     useEffect(() => {
         API.getEarthquakes()
             .then(res => {
-                for (var i = 0; i < 5; i++) {
+                for (var i = 0; i < res.data.features.length; i++) {
                     quakeList.push({
                         magnitude: res.data.features[i].properties.mag,
                         date: res.data.features[i].properties.time,
