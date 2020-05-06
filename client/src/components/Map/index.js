@@ -1,9 +1,13 @@
 import React from "react";
+import "./style.css";
+import GoogleApiWrapper from '../components/googleMap';
+
 
 function Map() {
+
     return (
-        <div id="googleMap" className="col-3 p-0">
-            <img id="map" className="m-0 p-0" src="/assets/images/testmap.png" alt="google map" />
+        <div id="map" className="container my-2">
+
         </div>
     )
 }

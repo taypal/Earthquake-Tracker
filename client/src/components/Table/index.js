@@ -1,24 +1,27 @@
 import React from "react";
+import "./style.css";
 
 function Table(props) {
     return (
-        <div id="earthquakeData" className="col-6 p-0">
-            <table className="table table-bordered m-0 p-0">
+        <div id="earthquakeData" className="col-12 p-0">
+            <table className="table table-sm table-borderless m-0 p-0">
                 <tr>
-                    <th scope="row" className="text-center">Date</th>
-                    <th scope="row" className="text-center">Time</th>
+                    <td className="p-2 text-warning text-center"><s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎ ‎‏‏‎ ‎Date‏‏‎ ‎‏‏‎ ‎<s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎</td>
                 </tr>
                 <tr>
-                    <td className="text-center">{props.date}</td>
-                    <td className="text-center">{props.time}</td>
+                    <td className="text-center text-light">{props.date}</td>
                 </tr>
                 <tr>
-                    <th className="text-center">Location</th>
-                    <th className="text-center">Depth</th>
+                    <td className="p-2 text-warning text-center"><s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎ ‎‏‏‎ ‎Location ‎‏‏‎ ‎<s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎</td>
                 </tr>
                 <tr>
-                    <td className="text-center">{props.location}</td>
-                    <td className="text-center">{props.depth}</td>
+                    <td className="text-center text-white">{props.location}</td>
+                </tr>
+                <tr>
+                    <td className="p-2 text-warning text-center"><s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎ ‎‏‏‎ Depth‏‏‎ ‎‏‏‎ ‎<s> ‎‏‏‎ ‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎</s>‏‏‎</td>
+                </tr>
+                <tr>
+                    <td className="text-center text-white">{props.depth}</td>
                 </tr>
             </table>
         </div>

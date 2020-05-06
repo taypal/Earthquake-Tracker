@@ -9,6 +9,14 @@ import Usgs from "../components/Usgs";
 import API from "../utils/API";
 import auth0Client from '../Auth';
 
+import SearchForm from "../components/SearchForm";
+import Results from "../components/Results";
+
+
+var moment = require("moment");
+
+
+
 var profile = ""
 
 
@@ -62,9 +70,11 @@ function User() {
             API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
                 .then(res => {
                     for (var i = 0; i < res.data.features.length; i++) {
+                        var momentTime = moment(res.data.features[i].properties.time).format('MMMM Do YYYY, h:mm a')
                         quakeList.push({
                             magnitude: res.data.features[i].properties.mag,
-                            date: res.data.features[i].properties.time,
+                            // date: res.data.features[i].properties.time,
+                            date: momentTime,
                             location: res.data.features[i].properties.place,
                             depth: res.data.features[i].geometry.coordinates[2] + " km",
                             time: res.data.features[i].properties.time,
@@ -97,54 +107,67 @@ function User() {
     return (
         <div>
             <Navbar />
-            <form id="searchForm" className="form-inline mx-auto mt-5" onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="number"
-                    min="-90"
-                    max="90"
-                    required="required"
-                    name="latitude"
-                    className="form-control mx-2"
-                    id="latitudeInput"
-                    placeholder="lat"
-                    ref={register}
-                />
-                <input
-                    type="number"
-                    min="-180"
-                    max="180"
-                    name="longitude"
-                    required="required"
-                    className="form-control mx-2"
-                    id="longitudeInput"
-                    placeholder="long"
-                    ref={register}
-                />
-                <input
-                    type="number"
-                    min="1"
-                    max="9"
-                    required="required"
-                    name="magnitude"
-                    className="form-control mx-2"
-                    id="lmagnitudeInput"
-                    placeholder="mag"
-                    ref={register}
-                />
-                <input
-                    type="number"
-                    min="0"
-                    required="required"
-                    name="proximity"
-                    className="form-control mx-2"
-                    id="proximityInput"
-                    placeholder="proximity (km)"
-                    ref={register}
-                />
-                <button
-                    type="submit" className="btn btn-secondary mx-2"
-                >Update Search</button>
-            </form>
+            <SearchForm>
+                <form id="searchForm" className="form align-items-center" onSubmit={handleSubmit(onSubmit)}>
+                    <input
+                        className="form-control border-warning border-top-0 border-left-0 border-right-0 rounded-0 bg-transparent text-light text-center"
+                        type="number"
+                        min="-90"
+                        max="90"
+                        required="required"
+                        name="latitude"
+                        id="latitudeInput"
+                        placeholder="latitude"
+                        ref={register}
+                    />
+                    <input
+                        className="form-control border-warning border-top-0 border-left-0 border-right-0 rounded-0 bg-transparent text-light text-center"
+                        type="number"
+                        min="-180"
+                        max="180"
+                        name="longitude"
+                        required="required"
+                        id="longitudeInput"
+                        placeholder="longitude"
+                        ref={register}
+                    />
+                    <input
+                        className="form-control border-warning border-top-0 border-left-0 border-right-0 rounded-0 bg-transparent text-light text-center"
+                        type="number"
+                        min="1"
+                        max="9"
+                        required="required"
+                        name="magnitude"
+                        id="lmagnitudeInput"
+                        placeholder="magnitude"
+                        ref={register}
+                    />
+                    <input
+                        className="form-control border-warning border-top-0 border-left-0 border-right-0 rounded-0 bg-transparent text-light text-center"
+                        type="number"
+                        min="0"
+                        max="20000"
+                        required="required"
+                        name="proximity"
+                        id="proximityInput"
+                        placeholder="proximity (km)"
+                        ref={register}
+                    />
+                    <button
+                        type="submit" className="btn btn-sm btn-block btn-outline-secondary mt-2 text-white"
+                    >Update Search</button>
+                </form>
+
+
+
+            </SearchForm>
+
+            <Results
+                lat={queryState.latitude}
+                long={queryState.longitude}
+                mag={queryState.magnitude}
+                prox={queryState.proximity}
+            />
 
             <EarthquakeList>
                 {earthquakeState[0] ? (
@@ -163,10 +186,10 @@ function User() {
                                 <Usgs url={quake.url} />
                             </EarthquakeCard>
                         );
-                    })) : (<h3 className="text-center text-black mt-3">No records found</h3>)
+                    })) : (<h3 className="text-center text-black mt-3 text-warning">No records found</h3>)
                 }
             </EarthquakeList>
-        </div>
+        </div >
     )
 }
 

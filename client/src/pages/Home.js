@@ -5,7 +5,7 @@ import EarthquakeCard from "../components/EarthquakeCard";
 import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import API from "../utils/API";
-
+import Title from "../components/Title";
 import GoogleApiWrapper from '../components/googleMap';
 
 function Home() {
@@ -17,7 +17,7 @@ function Home() {
     useEffect(() => {
         API.getEarthquakes()
             .then(res => {
-                for (var i = 0; i < 5; i++) {
+                for (var i = 0; i < res.data.features.length; i++) {
                     quakeList.push({
                         magnitude: res.data.features[i].properties.mag,
                         date: res.data.features[i].properties.time,
@@ -36,6 +36,12 @@ function Home() {
     return (
         <div>
             <Navbar />
+            <Title
+                title="Insert Title Here"
+            />
+
+            <GoogleApiWrapper />
+
             <EarthquakeList>
 
                 {earthquakeState.map(quake => {
@@ -56,7 +62,8 @@ function Home() {
 
             </EarthquakeList>
 
-            <GoogleApiWrapper />
+
+
         </div>
     )
 }
