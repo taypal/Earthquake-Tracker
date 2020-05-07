@@ -1,5 +1,6 @@
 {
   "name": "earthquake-tracker",
+  "homepage": "https://epicenter-earthquake-tracker.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
