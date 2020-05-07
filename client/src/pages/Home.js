@@ -40,7 +40,7 @@ function Home() {
                 title="Insert Title Here"
             />
 
-            <GoogleApiWrapper />
+            {/* <GoogleApiWrapper /> */}
 
             <EarthquakeList>
 
