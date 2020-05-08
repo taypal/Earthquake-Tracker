@@ -10,7 +10,6 @@ class Auth {
             redirectUri: `${window.location.origin}/callback`,
             responseType: 'id_token',
             scope: 'openid profile',
-            audience: ""
         });
 
 
