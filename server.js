@@ -10,12 +10,15 @@ const routes = require("./routes");
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("client"))
+//app.use(express.static("client"))
 
 // Serve up static assets (usually on heroku)
 //if (process.env.NODE_ENV === "production") {
 // app.use(express.static("client"));
 //}
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
 
 // Define API routes here
 app.use(routes);
