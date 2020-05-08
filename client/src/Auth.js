@@ -7,7 +7,7 @@ class Auth {
             domain: 'dev-i2s5lit7.auth0.com',
             audience: 'https://dev-i2s5lit7.auth0.com/userinfo',
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
-            redirectUri: 'https://epicenter-earthquake-tracker.herokuapp.com/callback',
+            redirectUri: `${window.location.origin} + "/callback"`,
             responseType: 'id_token',
             scope: 'openid profile'
         });
