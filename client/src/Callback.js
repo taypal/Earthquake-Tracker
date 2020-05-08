@@ -3,9 +3,15 @@ import { withRouter } from 'react-router-dom';
 import auth0Client from './Auth';
 
 class Callback extends Component {
+
+
+
     render() {
+        console.log("callback is working")
         return (
+
             <p>Loading profile...</p>
+
         );
     }
 
