@@ -13,7 +13,13 @@ var moment = require("moment");
 function Home() {
 
     var quakeList = [];
+    var markerList = [];
+    const iconList = {
+        icon1: 'https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Flag--Right-Chartreuse.png',
+        icon2: 'https://cdn2.iconfinder.com/data/icons/IconsLandVistaMapMarkersIconsDemo/256/MapMarker_Marker_Outside_Chartreuse.png'
+    }
     const [earthquakeState, setEarthquakeState] = useState([]);
+
 
     // Load all load earthquake data and set state
     useEffect(() => {
@@ -25,8 +31,15 @@ function Home() {
                         magnitude: res.data.features[i].properties.mag,
                         date: momentTime,
                         location: res.data.features[i].properties.place,
-                        depth: res.data.features[i].geometry.coordinates[2] + " km",
+                        depth: res.data.features[i].geometry.coordinates[2] + " km"
                     })
+                    markerList.push({
+                        lat: res.data.features[i].geometry.coordinates[1],
+                        long: res.data.features[i].geometry.coordinates[0],
+                        icon: iconList.icon1
+                    })
+
+                    console.log(markerList)
                 }
                 return quakeList
             })
@@ -39,7 +52,7 @@ function Home() {
         <div>
             <Navbar />
             <Title
-                title="Insert Title Here"
+                title="Earthquake Tracker"
             />
 
             <Mapcomp />
