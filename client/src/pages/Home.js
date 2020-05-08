@@ -12,7 +12,6 @@ var moment = require("moment");
 
 function Home() {
 
-    const markerContext = React.createContext({});
     var quakeList = [];
     const [earthquakeState, setEarthquakeState] = useState([]);
 
