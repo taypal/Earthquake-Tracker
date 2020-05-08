@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import GoogleApiWrapper from '../components/googleMap';
+
 
 
 function Map() {
