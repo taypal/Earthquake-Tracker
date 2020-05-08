@@ -7,7 +7,7 @@ class Auth {
             domain: 'dev-i2s5lit7.auth0.com',
             audience: 'https://dev-i2s5lit7.auth0.com/userinfo',
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
-            redirectUri: 'http://localhost:3000/callback',
+            redirectUri: 'https://epicenter-earthquake-tracker.herokuapp.com/callback',
             responseType: 'id_token',
             scope: 'openid profile'
         });
@@ -57,7 +57,7 @@ class Auth {
 
     signOut() {
         this.auth0.logout({
-            returnTo: 'http://localhost:3000',
+            returnTo: 'https://epicenter-earthquake-tracker.herokuapp.com/',
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
         });
     }
