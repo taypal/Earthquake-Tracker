@@ -6,7 +6,7 @@ import Magnitude from "../components/Magnitude";
 import Table from "../components/Table";
 import API from "../utils/API";
 import Title from "../components/Title";
-import GoogleApiWrapper from '../components/googleMap';
+import Mapcomp from "../components/Mapcomp";
 
 function Home() {
 
@@ -39,8 +39,7 @@ function Home() {
             <Title
                 title="Insert Title Here"
             />
-
-            <GoogleApiWrapper />
+            <Mapcomp />
 
             <EarthquakeList>
 

@@ -5,7 +5,7 @@ function SearchForm(props) {
 
     return (
 
-        <div id="searchForm" className="d-flex justify-content-center justify-content-sm-between">
+        <div id="searchForm" className="d-flex flex-wrap justify-content-center justify-content-md-between">
             {props.children}
         </div>
     )
