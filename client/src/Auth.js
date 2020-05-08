@@ -45,6 +45,7 @@ class Auth {
                 }
                 this.setSession(authResult);
                 resolve();
+                console.log("authenticated")
             });
         })
     }
