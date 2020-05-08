@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import auth0Client from './Auth';
 
@@ -9,14 +9,11 @@ class Callback extends Component {
         );
     }
 
-    componentDidMount() {
-        auth0Client.handleAuthentication();
+    async componentDidMount() {
+        await auth0Client.handleAuthentication();
         this.props.history.replace('/dashboard');
     }
-
 }
-
-
 
 
 
