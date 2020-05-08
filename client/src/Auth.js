@@ -7,9 +7,10 @@ class Auth {
             domain: 'dev-i2s5lit7.auth0.com',
             audience: 'https://dev-i2s5lit7.auth0.com/userinfo',
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
-            redirectUri: `${window.location.origin} + "/callback"`,
+            redirectUri: `${window.location.origin}/callback`,
             responseType: 'id_token',
-            scope: 'openid profile'
+            scope: 'openid profile',
+            audience: ""
         });
 
 
@@ -74,5 +75,6 @@ class Auth {
     }
 }
 const auth0Client = new Auth();
+
 
 export default auth0Client;
