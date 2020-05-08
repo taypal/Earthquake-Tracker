@@ -58,7 +58,7 @@ class Auth {
 
     signOut() {
         this.auth0.logout({
-            returnTo: 'https://epicenter-earthquake-tracker.herokuapp.com/',
+            returnTo: window.location.origin,
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
         });
     }
