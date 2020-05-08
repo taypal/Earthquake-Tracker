@@ -3,8 +3,8 @@ import "./style.css";
 
 function Results(props) {
     return (
-        <div className="mt-5">
-            <h3 className="text-center text-light">Recent Earthquakes</h3>
+        <div className="mt-5 mx-auto">
+            <h3 className="text-center text-light pb-2 border border-warning border-top-0 border-right-0 border-left-0">Recent Earthquakes</h3>
             <div className="d-flex justify-content-center col-12 p-0">
                 <table id="results" className="table table-sm table-borderless m-0 p-0">
                     <tr>

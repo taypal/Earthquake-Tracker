@@ -1,56 +1,27 @@
 import React, { useEffect, useRef } from 'react';
-import axios from "axios";
+
+
 
 const GMap = () => {
+
     const googleMapRef = useRef(null);
     let googleMap = null;
 
-    // list of icons
-    const iconList = {
-        icon1: 'http://maps.google.com/mapfiles/kml/shapes/target.png',
-        icon2: 'http://maps.google.com/mapfiles/kml/pal3/icon57.png'
-    }
 
-    // list of the marker object along with icon
-    const markerList = [
-        // { lat: 41, lng: -112, icon: iconList.icon1 },
-        // { lat: 40, lng: -110, icon: iconList.icon2 }
-    ]
-
-    function getQuakes() {
-        return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=12&starttime=2000-01-01&minmagnitude=8.0");
-    }
 
     useEffect(() => {
-        getQuakes()
-            .then(res => {
-                for (var i = 0; i < res.data.features.length; i++) {
-                    markerList.push({
-                        lat: res.data.features[i].geometry.coordinates[1],
-                        lng: res.data.features[i].geometry.coordinates[0],
-                        icon: iconList.icon2
-                    })
-                }
-                return markerList
-            })
-            .then(markerList => {
-                googleMap = initGoogleMap();
-                var bounds = new window.google.maps.LatLngBounds();
-                markerList.map(x => {
-                    const marker = createMarker(x);
-                    bounds.extend(marker.position);
-                });
-                googleMap.fitBounds(bounds); // the map to contain all markers
-            })
-
+        googleMap = initGoogleMap();
+        createMarker();
     }, []);
 
 
 
     // initialize the google map
-    const initGoogleMap = () => {
+    const initGoogleMap = (props) => {
         return new window.google.maps.Map(googleMapRef.current, {
             disableDefaultUI: true,
+            center: { lat: 40.75, lng: -111.9 },
+            zoom: 8,
             styles: [
                 { elementType: 'geometry', stylers: [{ color: '#0f111d' }] },
                 { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
@@ -135,14 +106,9 @@ const GMap = () => {
     }
 
     // create marker on google map
-    const createMarker = (markerObj) => new window.google.maps.Marker({
-        position: { lat: markerObj.lat, lng: markerObj.lng },
-        map: googleMap,
-        icon: {
-            url: markerObj.icon,
-            // set marker width and height
-            scaledSize: new window.google.maps.Size(25, 25)
-        }
+    const createMarker = () => new window.google.maps.Marker({
+        position: { lat: 40.75, lng: -111.9 },
+        map: googleMap
     });
 
     return <div className="mt-3"
@@ -150,6 +116,7 @@ const GMap = () => {
         ref={googleMapRef}
 
         style={{ height: 300 }}
+
     />
 }
 
