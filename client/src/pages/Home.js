@@ -39,7 +39,9 @@ function Home() {
             <Title
                 title="Insert Title Here"
             />
+
             <Mapcomp />
+
 
             <EarthquakeList>
 
