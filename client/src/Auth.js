@@ -46,6 +46,7 @@ class Auth {
                     return reject(err);
 
                 }
+                console.log(authResult)
                 this.setSession(authResult);
                 resolve();
                 console.log("authenticated")

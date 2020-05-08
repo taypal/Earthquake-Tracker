@@ -10,6 +10,7 @@ class Callback extends Component {
     }
 
     async componentDidMount() {
+        console.log("mounted")
         await auth0Client.handleAuthentication();
         this.props.history.replace('/dashboard');
     }
