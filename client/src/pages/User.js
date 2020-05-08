@@ -8,15 +8,12 @@ import Table from "../components/Table";
 import Usgs from "../components/Usgs";
 import API from "../utils/API";
 import auth0Client from '../Auth';
-import Mapcomp from "../components/Mapcomp";
+import UserMap from "../components/UserMap";
 import SearchForm from "../components/SearchForm";
 import Results from "../components/Results";
 
 
 var moment = require("moment");
-
-
-
 var profile = ""
 
 
@@ -157,7 +154,7 @@ function User() {
                         type="submit" className="btn btn-sm btn-block btn-outline-secondary mt-2 text-white"
                     >Update Search</button>
                 </form>
-                <Mapcomp />
+                <UserMap />
 
             </SearchForm>
 

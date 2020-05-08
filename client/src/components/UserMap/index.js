@@ -16,7 +16,7 @@ const loadGoogleMapScript = (callback) => {
     }
 }
 
-function Mapcomp() {
+function UserMap() {
     const [loadMap, setLoadMap] = useState(false);
 
     useEffect(() => {
@@ -33,4 +33,4 @@ function Mapcomp() {
     );
 }
 
-export default Mapcomp;
+export default UserMap;
