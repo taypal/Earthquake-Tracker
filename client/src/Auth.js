@@ -41,7 +41,9 @@ class Auth {
             this.auth0.parseHash((err, authResult) => {
                 if (err) return reject(err);
                 if (!authResult || !authResult.idToken) {
+                    console.log(err)
                     return reject(err);
+
                 }
                 this.setSession(authResult);
                 resolve();
