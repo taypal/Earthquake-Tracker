@@ -8,6 +8,8 @@ import API from "../utils/API";
 import Title from "../components/Title";
 import Mapcomp from "../components/Mapcomp";
 
+var moment = require("moment");
+
 function Home() {
 
     var quakeList = [];
@@ -24,9 +26,10 @@ function Home() {
         API.getEarthquakes()
             .then(res => {
                 for (var i = 0; i < res.data.features.length; i++) {
+                    var momentTime = moment(res.data.features[i].properties.time).format('MMMM Do YYYY, h:mm a')
                     quakeList.push({
                         magnitude: res.data.features[i].properties.mag,
-                        date: res.data.features[i].properties.time,
+                        date: momentTime,
                         location: res.data.features[i].properties.place,
                         depth: res.data.features[i].geometry.coordinates[2] + " km"
                     })
@@ -51,7 +54,9 @@ function Home() {
             <Title
                 title="Earthquake Tracker"
             />
+
             <Mapcomp />
+
 
             <EarthquakeList>
 
