@@ -34,7 +34,7 @@ class App extends Component {
     return (
       <div className="App" >
         <Route exact path='/' component={Home} exact />
-        <Route exact path='/callback' component={Callback} exact />
+        <Route exact path='/callback' component={Callback} />
         <SecuredRoute path='/dashboard' component={User} checkingSession={this.state.checkingSession} />
       </div>
     )
