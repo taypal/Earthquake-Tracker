@@ -27,6 +27,7 @@ const GMap = () => {
             bounds.extend(marker.position);
         });
         googleMap.fitBounds(bounds); // the map to contain all markers
+
     }
 
 
@@ -186,6 +187,7 @@ const GMap = () => {
         }
     });
 
+
     return <div className="mt-3"
 
 
@@ -193,6 +195,8 @@ const GMap = () => {
 
         style={{ height: 300 }}
     />
+
+
 }
 
 export default GMap;
