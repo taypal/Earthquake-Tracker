@@ -23,11 +23,6 @@ function User() {
     var quakeList = [];
     const [earthquakeState, setEarthquakeState] = useState([]);
     const [queryState, setQueryState] = useState({
-        magnitude: 2.5,
-        latitude: 41,
-        longitude: -112,
-        proximity: 100,
-        initial: true
     })
 
 
