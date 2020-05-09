@@ -30,7 +30,6 @@ function UserMap() {
     return (
 
         <div className="mapp">
-
             {!loadMap ? <div>Loading...</div> : <GMap />}
         </div>
 

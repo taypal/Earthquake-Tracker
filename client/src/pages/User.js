@@ -96,7 +96,9 @@ function User() {
         console.log(profile);
         var userQuery = await API.addEarthquakes(profile, data)
         console.log(userQuery);
-        window.location.reload();
+        window.location.href = window.location
+
+
     }
 
 
@@ -160,14 +162,8 @@ function User() {
                     mag={queryState.magnitude}
                     prox={queryState.proximity}
                 />
-
-
             </SearchForm>
-
-
-
             <UserMap />
-
             <EarthquakeList>
                 {earthquakeState[0] ? (
                     earthquakeState.map(quake => {
