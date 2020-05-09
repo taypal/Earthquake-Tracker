@@ -7,7 +7,7 @@ class Auth {
             domain: 'dev-i2s5lit7.auth0.com',
             audience: 'https://dev-i2s5lit7.auth0.com/userinfo',
             clientID: 'a4SGun9H6paF301SbZIVK6OgqSvTExzK',
-            redirectUri: window.location.origin,
+            redirectUri: `${window.location.origin}/dashboard`,
             responseType: 'id_token',
             scope: 'openid profile',
         });
