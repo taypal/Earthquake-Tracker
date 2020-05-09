@@ -97,8 +97,6 @@ function User() {
         var userQuery = await API.addEarthquakes(profile, data)
         console.log(userQuery);
         window.location.href = window.location
-
-
     }
 
 
