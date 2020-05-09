@@ -17,7 +17,7 @@ const loadGoogleMapScript = (callback) => {
     }
 }
 
-function UserMap() {
+function UserMap({ triggerRender, queryState }) {
 
     const [loadMap, setLoadMap] = useState(false);
 
@@ -26,11 +26,12 @@ function UserMap() {
             setLoadMap(true)
         });
     }, []);
+    console.log('map parent index')
 
     return (
 
         <div className="mapp">
-            {!loadMap ? <div>Loading...</div> : <GMap />}
+            {!loadMap ? <div>Loading...</div> : <GMap triggerRender={triggerRender} queryState={queryState} />}
         </div>
 
     );
