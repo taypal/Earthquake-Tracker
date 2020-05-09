@@ -7,8 +7,8 @@ const GMap = () => {
 
     // list of icons
     const iconList = {
-        icon1: 'http://maps.google.com/mapfiles/kml/shapes/target.png',
-        icon2: 'http://maps.google.com/mapfiles/kml/pal3/icon57.png'
+        icon1: 'https://i.imgur.com/a7qk4pS.png',
+        icon2: 'https://i.imgur.com/kZG04bg.png'
     }
 
     // list of the marker object along with icon
@@ -141,7 +141,7 @@ const GMap = () => {
         icon: {
             url: markerObj.icon,
             // set marker width and height
-            scaledSize: new window.google.maps.Size(25, 25)
+            scaledSize: new window.google.maps.Size(10, 10)
         }
     });
 

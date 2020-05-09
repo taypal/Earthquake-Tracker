@@ -68,7 +68,6 @@ function User() {
                         var momentTime = moment(res.data.features[i].properties.time).format('MMMM Do YYYY, h:mm a')
                         quakeList.push({
                             magnitude: res.data.features[i].properties.mag,
-                            // date: res.data.features[i].properties.time,
                             date: momentTime,
                             location: res.data.features[i].properties.place,
                             depth: res.data.features[i].geometry.coordinates[2] + " km",
@@ -81,6 +80,7 @@ function User() {
                 .then(quakeList => {
                     setEarthquakeState(quakeList)
                     quakeList = [];
+
                 })
         }
 
@@ -96,6 +96,7 @@ function User() {
         console.log(profile);
         var userQuery = await API.addEarthquakes(profile, data)
         console.log(userQuery);
+        window.location.reload();
     }
 
 
@@ -165,10 +166,7 @@ function User() {
 
 
 
-            <UserMap
-                lat={queryState.latitude}
-                long={queryState.longitude}
-            />
+            <UserMap />
 
             <EarthquakeList>
                 {earthquakeState[0] ? (
