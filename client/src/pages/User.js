@@ -8,21 +8,17 @@ import Table from "../components/Table";
 import Usgs from "../components/Usgs";
 import API from "../utils/API";
 import auth0Client from '../Auth';
-import Mapcomp from "../components/Mapcomp";
+import UserMap from "../components/UserMap";
 import SearchForm from "../components/SearchForm";
 import Results from "../components/Results";
 
 
 var moment = require("moment");
-
-
-
 var profile = ""
 
 
+
 function User() {
-
-
 
     var quakeList = [];
     const [earthquakeState, setEarthquakeState] = useState([]);
@@ -34,16 +30,15 @@ function User() {
         initial: true
     })
 
+
+
     async function fetchUserDefault() {
         var testUser = await API.findUser(profile);
         console.log(testUser.data);
         var userData = testUser.data || {};
         userData.initial = false;
         setQueryState(userData)
-
     }
-
-
 
     useEffect(() => {
         // Run! Like go get some data from an API.
@@ -157,16 +152,22 @@ function User() {
                         type="submit" className="btn btn-sm btn-block btn-outline-secondary mt-2 text-white"
                     >Update Search</button>
                 </form>
-                <Mapcomp />
+
+                <Results
+                    lat={queryState.latitude}
+                    long={queryState.longitude}
+                    mag={queryState.magnitude}
+                    prox={queryState.proximity}
+                />
+
 
             </SearchForm>
 
 
-            <Results
+
+            <UserMap
                 lat={queryState.latitude}
                 long={queryState.longitude}
-                mag={queryState.magnitude}
-                prox={queryState.proximity}
             />
 
             <EarthquakeList>

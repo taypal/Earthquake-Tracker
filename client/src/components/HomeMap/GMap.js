@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import axios from "axios";
 
 const GMap = () => {
     const googleMapRef = useRef(null);
@@ -6,25 +7,44 @@ const GMap = () => {
 
     // list of icons
     const iconList = {
-        icon1: 'https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Flag--Right-Chartreuse.png',
-        icon2: 'https://cdn2.iconfinder.com/data/icons/IconsLandVistaMapMarkersIconsDemo/256/MapMarker_Marker_Outside_Chartreuse.png'
+        icon1: 'http://maps.google.com/mapfiles/kml/shapes/target.png',
+        icon2: 'http://maps.google.com/mapfiles/kml/pal3/icon57.png'
     }
 
     // list of the marker object along with icon
     const markerList = [
-        { lat: 41, lng: -112, icon: iconList.icon1 },
-        { lat: 40, lng: -110, icon: iconList.icon2 }
+        // { lat: 41, lng: -112, icon: iconList.icon1 },
+        // { lat: 40, lng: -110, icon: iconList.icon2 }
     ]
 
+    function getQuakes() {
+        return axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=12&starttime=2000-01-01&minmagnitude=8.0");
+    }
+
     useEffect(() => {
-        googleMap = initGoogleMap();
-        var bounds = new window.google.maps.LatLngBounds();
-        markerList.map(x => {
-            const marker = createMarker(x);
-            bounds.extend(marker.position);
-        });
-        googleMap.fitBounds(bounds); // the map to contain all markers
+        getQuakes()
+            .then(res => {
+                for (var i = 0; i < res.data.features.length; i++) {
+                    markerList.push({
+                        lat: res.data.features[i].geometry.coordinates[1],
+                        lng: res.data.features[i].geometry.coordinates[0],
+                        icon: iconList.icon2
+                    })
+                }
+                return markerList
+            })
+            .then(markerList => {
+                googleMap = initGoogleMap();
+                var bounds = new window.google.maps.LatLngBounds();
+                markerList.map(x => {
+                    const marker = createMarker(x);
+                    bounds.extend(marker.position);
+                });
+                googleMap.fitBounds(bounds); // the map to contain all markers
+            })
+
     }, []);
+
 
 
     // initialize the google map
