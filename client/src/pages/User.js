@@ -91,10 +91,10 @@ function User() {
         console.log("form submitted")
         setQueryState(data);
         console.log(profile);
-        var userQuery = await API.addEarthquakes(profile, data)
-        console.log(`userQuery from parent${JSON.stringify(userQuery)}`);
-        // window.location.href = window.location
+        var userQuery = await API.addEarthquakes(profile, data)  
+        
         settriggerRender(!triggerRender)
+
     }
 
 
