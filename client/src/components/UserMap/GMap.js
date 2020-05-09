@@ -3,32 +3,36 @@ import API from "../../utils/API";
 import auth0Client from '../../Auth';
 
 var profile = "";
-const markerList = [];
+let markerList = [];
 
-const GMap = () => {
+const GMap = ({ triggerRender, queryState }) => {
 
 
-    const [queryState, setQueryState] = useState({})
-
-    async function fetchUserDefault() {
-        var testUser = await API.findUser(profile);
-        console.log(testUser.data);
-        var userData = testUser.data || {};
-        userData.initial = false;
-        setQueryState(userData)
-    }
+    const [googMap, setgoogMap] = useState()
 
     function renderMap() {
         console.log("render map now");
         googleMap = initGoogleMap();
         var bounds = new window.google.maps.LatLngBounds();
+        console.log(`mark ${JSON.stringify(markerList)}`);
+
         markerList.map(x => {
             const marker = createMarker(x);
             bounds.extend(marker.position);
         });
         googleMap.fitBounds(bounds); // the map to contain all markers
-
+        setgoogMap(googleMap)
     }
+
+    useEffect(() => {
+        console.log('trigger render useeffecg');
+
+        if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
+            console.log('hopeful code');
+
+            window.google.maps.event.trigger(googMap, 'resize');
+        }
+    }, [triggerRender]);
 
 
     useEffect(() => {
@@ -46,39 +50,40 @@ const GMap = () => {
         fetchUser()
     }, []);
 
-    useEffect(() => {
-        fetchUserDefault()
-    }, [])
-
     // Load all load earthquake data and set state
     useEffect(() => {
-        if (!queryState.initial) {
-            API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
-                .then(res => {
-                    console.log(queryState.latitude);
-                    markerList.push({
-                        lat: parseInt(queryState.latitude),
-                        lng: parseInt(queryState.longitude),
-                        icon: iconList.icon1
-                    });
-                    for (var i = 0; i < res.data.features.length; i++) {
-                        markerList.push({
-                            lat: res.data.features[i].geometry.coordinates[1],
-                            lng: res.data.features[i].geometry.coordinates[0],
-                            icon: iconList.icon2
-                        })
-                    }
 
-                    console.log(markerList);
-                    return markerList
-                })
-                .then(markerList => {
-                    setQueryState(markerList)
-                    renderMap();
-                    markerList = [];
-                })
-        }
-    }, [queryState])
+        //   if (!queryState.initial) {
+        //fetchUserDefault()
+        console.log(`querystate ${JSON.stringify(queryState)}`);
+
+        API.getUserEarthquakes(queryState.magnitude, queryState.latitude, queryState.longitude, queryState.proximity)
+            .then(res => {
+                console.log(queryState.latitude);
+                markerList.push({
+                    lat: parseInt(queryState.latitude),
+                    lng: parseInt(queryState.longitude),
+                    icon: iconList.icon1
+                });
+                for (var i = 0; i < res.data.features.length; i++) {
+                    markerList.push({
+                        lat: res.data.features[i].geometry.coordinates[1],
+                        lng: res.data.features[i].geometry.coordinates[0],
+                        icon: iconList.icon2
+                    })
+                }
+
+                console.log(markerList);
+                return markerList
+            })
+            .then(ml => {
+                markerList = ml
+                console.log(`new marker list? ${JSON.stringify(markerList)}`);
+                renderMap();
+                markerList = [];
+            })
+        //   }
+    }, [queryState, triggerRender])
 
     const googleMapRef = useRef(null);
     let googleMap = null;
@@ -187,14 +192,15 @@ const GMap = () => {
         }
     });
 
-
+    console.log(`test ${triggerRender}`)
     return <div className="mt-3"
 
 
         ref={googleMapRef}
 
         style={{ height: 300 }}
-    />
+    >
+    </div>
 
 
 }

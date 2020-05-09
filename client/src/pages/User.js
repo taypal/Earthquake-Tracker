@@ -23,11 +23,6 @@ function User() {
     var quakeList = [];
     const [earthquakeState, setEarthquakeState] = useState([]);
     const [queryState, setQueryState] = useState({
-        magnitude: 2.5,
-        latitude: 41,
-        longitude: -112,
-        proximity: 100,
-        initial: true
     })
 
 
@@ -89,14 +84,17 @@ function User() {
 
     const { register, handleSubmit } = useForm();
 
+    const [triggerRender, settriggerRender] = useState(false);
+
     async function onSubmit(data, event) {
         event.preventDefault();
         console.log("form submitted")
         setQueryState(data);
         console.log(profile);
-        var userQuery = await API.addEarthquakes(profile, data)
-        console.log(userQuery);
-        window.location.href = window.location
+        var userQuery = await API.addEarthquakes(profile, data)  
+        
+        settriggerRender(!triggerRender)
+
     }
 
 
@@ -161,7 +159,10 @@ function User() {
                     prox={queryState.proximity}
                 />
             </SearchForm>
-            <UserMap />
+            <UserMap
+                triggerRender={triggerRender}
+                queryState={queryState}
+            />
             <EarthquakeList>
                 {earthquakeState[0] ? (
                     earthquakeState.map(quake => {
