@@ -1,7 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [],
+  "short_name": "Epicenter",
+  "name": "Epicenter Earthquake Tracker",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
