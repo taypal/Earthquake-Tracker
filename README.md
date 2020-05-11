@@ -24,20 +24,20 @@ This web application allows a user to search for earthquake data for a specific 
 
 
 ## How to use
-* Sign in to create your user account
-* Search by location, magnitude, and proximity
-* App presents dashboard info earthquake data 
-
+* Click on "Sign In" and click on the "Sign Up" tab. 
+* Enter an email address and password you would like to use. 
+* You will be redirected to the Home page after signup. 
+* Click on "Dashboard"
+* Perform a search by entering the Latitude, Longitude, Magnitude and Search Radius. 
+* Search will appear on the map and the cards will update with relevant earthquakes. 
+* The blue target marker is the coordinates of your search. The surrounding orange markers are the coordinates of earthquakes. The 12 most recent earthquakes are shown. 
 
 ## Known Bugs
-
+* Refreshing the "Dashboard" will cause a "404 not found" as the server attempts to handle the route and not the React Router.
 
 ## Hosted
 
-This site is hosted using Heroku
+This site is hosted courtesy of Heroku.
 
 To view the site please click [here](https://epicenter-earthquake-tracker.herokuapp.com/).
-
-
-## Contact Info
 
